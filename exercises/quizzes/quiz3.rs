@@ -12,14 +12,14 @@
 // block to support alphabetical report cards in addition to numerical ones.
 
 // TODO: Adjust the struct as described above.
-struct ReportCard {
-    grade: f32,
+struct ReportCard<T> {
+    grade: T,
     student_name: String,
     student_age: u8,
 }
 
 // TODO: Adjust the impl block as described above.
-impl ReportCard {
+impl<T: std::fmt::Display> ReportCard<T> {
     fn print(&self) -> String {
         format!(
             "{} ({}) - achieved a grade of {}",
@@ -43,10 +43,7 @@ mod tests {
             student_name: "Tom Wriggle".to_string(),
             student_age: 12,
         };
-        assert_eq!(
-            report_card.print(),
-            "Tom Wriggle (12) - achieved a grade of 2.1",
-        );
+        assert_eq!(report_card.print(), "Tom Wriggle (12) - achieved a grade of 2.1",);
     }
 
     #[test]
@@ -56,9 +53,6 @@ mod tests {
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
-        assert_eq!(
-            report_card.print(),
-            "Gary Plotter (11) - achieved a grade of A+",
-        );
+        assert_eq!(report_card.print(), "Gary Plotter (11) - achieved a grade of A+",);
     }
 }
